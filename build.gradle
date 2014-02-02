@@ -18,6 +18,7 @@ compileTestJava {
 }
 
 dependencies {
+	testCompile 'junit:junit:4.11'
 }
 
 jar {
@@ -30,12 +31,10 @@ jar {
 	}
 	
 	manifest {
-		def manifestMainClass = 'pl.jwalkiew.base64.Main'
 		def manifestClasspath = configurations.runtime.collect {
 			'lib/' + it.getName() 
 		}.join(' ')
 		
 		attributes("Class-Path": manifestClasspath)
-		attributes("Main-Class": manifestMainClass)
 	}
 }
