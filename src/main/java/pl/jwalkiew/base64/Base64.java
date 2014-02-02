@@ -49,7 +49,7 @@ public class Base64 {
 
 		for (int i = 0; i < 2; i++)
 			if (str.charAt(strLength - 1 - i) == PAD_CHAR.charAt(0))
-				pad += "A";
+				pad += CHARS.charAt(0);
 
 		str = str.substring(0, strLength - pad.length()) + pad;
 
