@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+repositories {
+	mavenCentral()
+}
+
+sourceCompatibility  = '1.7'
+targetCompatibility  = '1.7'
+
+compileJava {
+	options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+	options.encoding = 'UTF-8'
+}
+
+dependencies {
+}
+
+jar {
+	archiveName = 'base64.jar'
+	
+	from { 
+		configurations.compile.collect {
+			it.isDirectory() ? it : zipTree(it) 
+		}
+	}
+	
+	manifest {
+		def manifestMainClass = 'pl.jwalkiew.base64.Main'
+		def manifestClasspath = configurations.runtime.collect {
+			'lib/' + it.getName() 
+		}.join(' ')
+		
+		attributes("Class-Path": manifestClasspath)
+		attributes("Main-Class": manifestMainClass)
+	}
+}
