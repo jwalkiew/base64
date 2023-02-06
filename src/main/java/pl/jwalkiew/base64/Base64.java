@@ -21,9 +21,9 @@ public class Base64 {
 		}
 
 		for (int i = 0; i < bytes.length; i += 3) {
-			int byte1 = (int) (bytes[i]);
-			int byte2 = (int) (bytes[i + 1]);
-			int byte3 = (int) (bytes[i + 2]);
+			int byte1 = (int) (bytes[i]) & 255;
+			int byte2 = (int) (bytes[i + 1]) & 255;
+			int byte3 = (int) (bytes[i + 2]) &255;
 
 			int part1 = (byte1 >> 2) & 63;
 			int part2 = ((byte1 << 4) | (byte2 >> 4)) & 63;
